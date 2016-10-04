@@ -1,13 +1,9 @@
 // O(1)删除节点.如果只有一个节点,那么需要删除头节点,所以必须传递引用进来
 
 #include <iostream>
+#include "sList.h"
 using namespace std;
 
-struct ListNode
-{
-	int data;
-	ListNode* next;
-};
 
 void DeleteNode(ListNode*& head,ListNode*del)
 {
@@ -17,7 +13,7 @@ void DeleteNode(ListNode*& head,ListNode*del)
 	// 不是尾
 	if(del->next!=NULL)
 	{
-		swap(del->data,del->next->data);
+		swap(del->value,del->next->value);
 		ListNode*tmp = del->next;
 		del->next = tmp->next;
 
@@ -34,10 +30,11 @@ void DeleteNode(ListNode*& head,ListNode*del)
 	// 多个节点时,删除尾
 	else	
 	{
-		while(head->next!=del)
-			head = head->next;
+		ListNode* tail = head;
+		while(tail->next!=del)
+			tail = tail->next;
 		
-		head->next = del->next;
+		tail->next = del->next;
 		delete del;
 		del = NULL;
 	}
@@ -45,6 +42,20 @@ void DeleteNode(ListNode*& head,ListNode*del)
 
 int main(int argc, char const *argv[])
 {
-	
+	{
+		ListNode * del = l.find(0);
+		DeleteNode(l.head,del);	
+		l.Print();
+	}
+	{
+		ListNode * del = l.find(9);
+		DeleteNode(l.head,del);	
+		l.Print();
+	}
+	{
+		ListNode * del = l.find(5);
+		DeleteNode(l.head,del);	
+		l.Print();
+	}
 	return 0;
 }

@@ -1,40 +1,38 @@
 #include <iostream>
 #include <stack>
+#include "sList.h"
 using namespace std;
 
-struct ListNode
-{
-	int m_nKey;
-	ListNode* m_pNext;
-};
+// struct List
 
 void PrintListRevers(ListNode* head)
 {
 	if(!head)
 		return;
-	if(head->m_pNext)
-		PrintListRevers(head->m_pNext);
-	cout << head->m_nKey<<endl;
+	if(head->next)
+		PrintListRevers(head->next);
+	cout << head->value<<" ";
 }
 
-void PrintListRevers(ListNode* head)
-{
-	stack<ListNode*> s;
-	while(head!=NULL)
-	{
-		s.push(head);
-		head = head->m_pNext;
-	}
 
-	while(!s.empty())
-	{
-		ListNode* top = s.top();
-		cout << top->m_nKey<<endl;
-		s.pop();
-	}
-}
+// void PrintListRevers(ListNode* head)
+// {
+// 	stack<ListNode*> s;
+// 	while(head!=NULL)
+// 	{
+// 		s.push(head);
+// 		head = head->next;
+// 	}
+
+// 	while(!s.empty())
+// 	{
+// 		ListNode* top = s.top();
+// 		cout << top->value<<endl;
+// 		s.pop();
+// 	}
+// }
 int main(int argc, char const *argv[])
 {
-	
+	PrintListRevers(l.head);
 	return 0;
 }
