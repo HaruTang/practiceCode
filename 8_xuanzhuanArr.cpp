@@ -6,8 +6,36 @@ using namespace std;
 
 int BinarySearch(vector<int>&v,int start,int end)
 {
-	int mid = start+ (end - start)/2;
-	if(v[mid]==)
+	while(start<=end)
+	{
+		//边界相等
+		if(v[start]==v[end]||end - start==1)
+		{
+			int ret = v[start];
+			while(start<=end)
+			{
+				if(v[start]<ret)
+				{
+					ret = v[start];
+				}
+				++start;
+			}
+			return ret;
+		}
+
+		int mid = start+ (end - start)/2;
+		if(v[mid]>v[start]&&v[mid]<v[end])
+		{
+			end	= mid;
+		}
+		else if(v[mid]>v[start]&&v[start]>v[end])
+		{
+			start = mid;
+		}
+		else
+			end = mid;
+	}
+
 }
 int SearchInCirArr(vector<int> & v)
 {
@@ -23,5 +51,20 @@ int SearchInCirArr(vector<int> & v)
 }
 int main()
 {
+	std::vector<int> v;
+	for (int i = 4; i < 10; ++i)
+	{
+		v.push_back(i);
+	}
+	v.push_back(0);
+	for (int i = 0; i < 4; ++i)
+	{
+		v.push_back(i);
+	}
+
+	cout << SearchInCirArr(v)<<endl;
+	// v.resize(1);
+	// cout << SearchInCirArr(v)<<endl;
+
 	return 0;
 }
